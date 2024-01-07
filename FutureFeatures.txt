@@ -1,0 +1,23 @@
+Tryb wieloosobowy online: 
+    Rozbuduj grę o tryb wieloosobowy, który umożliwia graczom rywalizację z innymi graczami (zarówno na jedyn komputerze jak i później online).
+
+Dodaj Punktację: 
+    Wprowadź mechanizm punktacji, który nagradza gracza za przetrwanie i ewentualne osiągnięcia, takie jak liczba zniszczonych przeciwników.
+
+Przeciwnik Sterowany Komputerowo: 
+    Dodaj przeciwnika sterowanego przez sztuczną inteligencję. Zobacz, czy gracz może pokonać komputerowego przeciwnika.
+
+Poziomy Trudności: 
+    Stwórz różne poziomy trudności, które wpływają na szybkość i agresywność przeciwników, a także na inne parametry rozgrywki.
+
+Power-up'y: 
+    Wprowadź różne power-up'y lub bonusy, które gracze mogą zbierać, aby uzyskać krótkotrwałe korzyści, takie jak przyspieszenie, dłuższy ogon czy tymczasowa nietykalność.
+
+Różne Plansze: 
+    Zaimplementuj różne plansze lub scenariusze, z różnymi przeszkodami, które wpływają na rozgrywkę.
+
+Personalizacja Postaci: 
+    Pozwól graczom dostosowywać wygląd swojej postaci, takie jak kolor, wzór lub inne detale.
+
+Ranking Globalny: 
+    Dodaj funkcję rankingu globalnego, aby gracze mogli porównywać swoje wyniki z wynikami innych graczy na całym świecie.
