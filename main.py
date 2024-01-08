@@ -71,6 +71,6 @@ class Game:
         sys.exit()
 
 if __name__ == "__main__":
-    player_speed = int(input("Enter the player speed: ")) 
+    player_speed = float(input("Enter the player speed (e.g., 0.1): "))  
     game = Game(800, 600, player_speed)
     game.run()
