@@ -3,43 +3,45 @@ import sys
 import random
 
 class Player:
-    def __init__(self, color, start_x, start_y, speed):
+    def __init__(self, color, start_x, start_y, speed, block_size):
         self.color = color
         self.x = start_x
         self.y = start_y
         self.length = 1
         self.speed = speed
+        self.block_size = block_size
         self.direction = (1, 0)
 
     def move(self):
-        self.x += self.direction[0] * self.speed
-        self.y += self.direction[1] * self.speed
+        self.x += self.direction[0] * self.block_size * self.speed
+        self.y += self.direction[1] * self.block_size * self.speed
 
     def change_direction(self, new_direction):
         if self.direction != (-new_direction[0], -new_direction[1]):
             self.direction = new_direction
 
 class Food:
-    def __init__(self, color, width, height):
+    def __init__(self, color, width, height, block_size):
         self.color = color
         self.width = width
         self.height = height
+        self.block_size = block_size
         self.spawn_food()
 
     def spawn_food(self):
-        self.x = random.randrange(0, self.width, 10)
-        self.y = random.randrange(0, self.height, 10)
+        self.x = random.randrange(0, self.width, self.block_size)
+        self.y = random.randrange(0, self.height, self.block_size)
 
 class Game:
-    def __init__(self, width, height, player_speed):
+    def __init__(self, width, height, player_speed, block_size):
         pygame.init()
         self.width = width
         self.height = height
         self.board = pygame.display.set_mode((width, height))
         pygame.display.set_caption("Snake Game")
 
-        self.player = Player((0, 255, 0), width // 2, height // 2, player_speed)
-        self.food = Food((255, 0, 0), width, height)
+        self.player = Player((0, 255, 0), width // 2, height // 2, player_speed, block_size)
+        self.food = Food((255, 0, 0), width, height, block_size)
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -75,8 +77,8 @@ class Game:
 
     def draw_player(self):
         self.board.fill((0, 0, 0))
-        pygame.draw.rect(self.board, self.player.color, (self.player.x, self.player.y, 10 * self.player.length, 10))
-        pygame.draw.rect(self.board, self.food.color, (self.food.x, self.food.y, 10, 10))
+        pygame.draw.rect(self.board, self.player.color, (self.player.x, self.player.y, self.player.block_size * self.player.length, self.player.block_size))
+        pygame.draw.rect(self.board, self.food.color, (self.food.x, self.food.y, self.food.block_size, self.food.block_size))
         pygame.display.update()
 
     def run(self):
@@ -91,6 +93,7 @@ class Game:
         sys.exit()
 
 if __name__ == "__main__":
-    player_speed = float(input("Enter the player speed (e.g., 0.1): "))
-    game = Game(800, 600, player_speed)
+    player_speed = float(input("Enter the player speed (e.g., 0.01 (basic)): "))
+    block_size = 10  
+    game = Game(800, 600, player_speed, block_size)
     game.run()
