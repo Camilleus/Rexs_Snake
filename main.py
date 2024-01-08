@@ -2,30 +2,31 @@ import pygame
 import sys
 
 class Player:
-    def __init__(self, color, start_x, start_y):
+    def __init__(self, color, start_x, start_y, speed):
         self.color = color
         self.x = start_x
         self.y = start_y
         self.length = 1
+        self.speed = speed
         self.direction = (1, 0)
 
     def move(self):
-        self.x += self.direction[0]
-        self.y += self.direction[1]
+        self.x += self.direction[0] * self.speed
+        self.y += self.direction[1] * self.speed
 
     def change_direction(self, new_direction):
         if self.direction != (-new_direction[0], -new_direction[1]):
             self.direction = new_direction
 
 class Game:
-    def __init__(self, width, height):
+    def __init__(self, width, height, player_speed):
         pygame.init()
         self.width = width
         self.height = height
         self.board = pygame.display.set_mode((width, height))
         pygame.display.set_caption("Achtung, die Kurve!")
 
-        self.player = Player((255, 0, 0), width // 2, height // 2)
+        self.player = Player((255, 0, 0), width // 2, height // 2, player_speed)
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -42,7 +43,7 @@ class Game:
         elif keys[pygame.K_DOWN]:
             self.player.change_direction((0, 1))
         elif keys[pygame.K_BACKSPACE]:
-            return False  # End the game
+            return False 
 
         return True
 
@@ -70,5 +71,6 @@ class Game:
         sys.exit()
 
 if __name__ == "__main__":
-    game = Game(800, 600)
+    player_speed = int(input("Enter the player speed: ")) 
+    game = Game(800, 600, player_speed)
     game.run()
