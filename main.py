@@ -71,7 +71,8 @@ class Game:
             self.player.y = self.height // 2
 
     def check_food_collision(self):
-        if (self.player.x == self.food.x and self.player.y == self.food.y):
+        if (abs(self.player.x - self.food.x) < self.player.block_size and
+                abs(self.player.y - self.food.y) < self.player.block_size):
             self.player.length += 1
             self.food.spawn_food()
 
