@@ -13,8 +13,8 @@ class Player:
         self.direction = (1, 0)
 
     def move(self):
-        self.x += self.direction[0] * self.block_size * self.speed
-        self.y += self.direction[1] * self.block_size * self.speed
+        self.x += self.direction[0] * self.speed
+        self.y += self.direction[1] * self.speed
 
     def change_direction(self, new_direction):
         if self.direction != (-new_direction[0], -new_direction[1]):
@@ -39,8 +39,8 @@ class Game:
         self.height = height
         self.board = pygame.display.set_mode((width, height))
         pygame.display.set_caption("Snake Game")
-
-        self.player = Player((0, 255, 0), width // 2, height // 2, player_speed, block_size)
+        speed_multiplier = 0.1
+        self.player = Player((0, 255, 0), width // 2, height // 2, player_speed * speed_multiplier, block_size)
         self.food = Food((255, 0, 0), width, height, block_size)
 
     def handle_events(self):
@@ -94,7 +94,7 @@ class Game:
         sys.exit()
 
 if __name__ == "__main__":
-    player_speed = float(input("Enter the player speed (e.g., 0.01 (basic)): "))
+    player_speed = int(input("Enter the player speed (e.g., 1): "))
     block_size = 10  
     game = Game(800, 600, player_speed, block_size)
     game.run()
